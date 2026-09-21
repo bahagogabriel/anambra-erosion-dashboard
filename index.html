@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive screening dashboard for the Anambra soil erosion, sediment connectivity, and intervention prioritization project.">
+  <meta name="theme-color" content="#0b1f2a">
+  <title>Anambra Erosion Prioritization Dashboard</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://tiles.openfreemap.org">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#map">Skip to map</a>
+
+  <header class="site-header">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 42 42" role="img"><path d="M8 31c7-15 13-20 26-22-3 13-10 22-24 25"/><path d="M12 30c7-6 12-10 20-16"/></svg>
+    </div>
+    <div class="title-block">
+      <p class="eyebrow">Decision-support portfolio · Anambra State, Nigeria</p>
+      <h1>Anambra Erosion Prioritization Dashboard</h1>
+    </div>
+    <div class="header-status" title="Validated Stage 14A assets">
+      <span class="status-dot" aria-hidden="true"></span>
+      441 validated zones
+    </div>
+  </header>
+
+  <main>
+    <section class="metric-strip" aria-label="Project headline metrics">
+      <article class="metric-card">
+        <span class="metric-label">Priority zones</span>
+        <strong id="metric-zones">441</strong>
+        <small id="metric-zones-note">current map selection</small>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">Selected zone area</span>
+        <strong id="metric-area">163.67 km²</strong>
+        <small>mapped intervention units</small>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">LGAs represented</span>
+        <strong id="metric-lgas">21</strong>
+        <small>primary attribution</small>
+      </article>
+      <article class="metric-card accent-card">
+        <span class="metric-label">Modeled reduction</span>
+        <strong id="metric-reduction">716,299 t/yr</strong>
+        <small>screening scenario · 3.396%</small>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <aside class="control-panel" aria-label="Map controls and filters">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Explore</p>
+            <h2>Filter priority zones</h2>
+          </div>
+          <button id="reset-filters" class="text-button" type="button">Reset</button>
+        </div>
+
+        <label for="sector-filter">Intervention sector</label>
+        <select id="sector-filter">
+          <option value="all">All sectors</option>
+          <option value="1">Hillslope land management</option>
+          <option value="2">Urban erosion &amp; drainage screening</option>
+        </select>
+
+        <label for="tier-filter">Priority tier</label>
+        <select id="tier-filter">
+          <option value="all">All tiers</option>
+          <option value="1">Tier 1</option>
+          <option value="2">Tier 2</option>
+          <option value="3">Tier 3</option>
+        </select>
+
+        <label for="lga-filter">Primary LGA</label>
+        <select id="lga-filter">
+          <option value="all">All 21 LGAs</option>
+        </select>
+
+        <fieldset class="layer-controls">
+          <legend>Map layers</legend>
+          <label><input type="checkbox" data-layer-group="zones" checked> Intervention zones</label>
+          <label><input type="checkbox" data-layer-group="drainage" checked> Primary drainage</label>
+          <label><input type="checkbox" data-layer-group="lga" checked> LGA boundaries &amp; labels</label>
+        </fieldset>
+
+        <div class="tier-key" aria-label="Priority tier legend">
+          <p class="legend-title">Priority tier</p>
+          <span><i class="swatch tier-1"></i>Tier 1</span>
+          <span><i class="swatch tier-2"></i>Tier 2</span>
+          <span><i class="swatch tier-3"></i>Tier 3</span>
+        </div>
+
+        <button id="zoom-home" class="primary-button" type="button">Zoom to Anambra</button>
+      </aside>
+
+      <section class="map-panel" aria-label="Interactive intervention map">
+        <div id="map" role="application" aria-label="Interactive map of Anambra intervention priorities"></div>
+        <div id="map-loading" class="map-message" role="status">
+          <span class="spinner" aria-hidden="true"></span>
+          Loading validated spatial assets…
+        </div>
+        <div id="map-error" class="map-message error-message" hidden>
+          The interactive map could not load. Check your internet connection and open this folder through a local web server.
+        </div>
+        <div class="map-context" aria-live="polite">
+          <span id="coordinate-readout">Move over map for coordinates</span>
+          <span>WGS 84 · longitude, latitude</span>
+        </div>
+      </section>
+
+      <aside class="insight-panel" aria-label="Portfolio summary">
+        <section>
+          <div class="panel-heading compact">
+            <div>
+              <p class="eyebrow">Portfolio</p>
+              <h2>LGA delivery-load ranking</h2>
+            </div>
+          </div>
+          <p class="panel-note">Statewide relative index. Select a row to filter the map.</p>
+          <div class="ranking-header"><span>LGA</span><span>Relative load</span></div>
+          <div id="lga-ranking" class="ranking-list" role="list"></div>
+        </section>
+
+        <section class="sector-section">
+          <h2>Sector composition</h2>
+          <div id="sector-summary"></div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="interpretation-band" aria-labelledby="interpretation-title">
+      <div>
+        <p class="eyebrow">Use with care</p>
+        <h2 id="interpretation-title">Screening evidence, not engineering design</h2>
+      </div>
+      <ul id="interpretation-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Anambra Soil Erosion, Sediment Connectivity and Intervention Prioritization</p>
+    <p>Analysis: EPSG:32632 · Web display: EPSG:4326 · 30 m analysis grid</p>
+  </footer>
+
+  <noscript>This dashboard requires JavaScript to load the interactive map and project summaries.</noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

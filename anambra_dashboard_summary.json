@@ -1,0 +1,56 @@
+{
+  "project": "Anambra Soil Erosion Sediment Connectivity and Intervention Prioritization",
+  "generated_utc": "2026-09-21T15:17:16Z",
+  "coordinate_reference": {
+    "analysis": "WGS 84 / UTM zone 32N (EPSG:32632)",
+    "web_assets": "WGS 84 longitude/latitude (EPSG:4326)",
+    "analysis_cell_size_m": 30
+  },
+  "headline_metrics": {
+    "state_analysis_area_km2": 4599.2439,
+    "final_zone_count": 441,
+    "final_zone_area_km2": 163.6749,
+    "baseline_modeled_soil_loss_t_per_year": 21092161.73,
+    "scenario_modeled_soil_loss_t_per_year": 20375862.98,
+    "modeled_reduction_t_per_year": 716298.75,
+    "modeled_reduction_percent": 3.396,
+    "primary_drainage_length_km": 3967.5644,
+    "cross_lga_zone_count": 65,
+    "official_lga_zone_coverage_percent": 99.458619,
+    "primary_delivery_load_index": 3810994.16256
+  },
+  "sectors": [
+    {
+      "name": "Hillslope land management",
+      "zones": 368,
+      "area_km2": 97.794,
+      "relative_load_index": 2083973.57
+    },
+    {
+      "name": "Urban erosion and drainage screening",
+      "zones": 73,
+      "area_km2": 65.8809,
+      "relative_load_index": 1727020.6
+    },
+    {
+      "name": "Wetland and riparian verification",
+      "zones": 0,
+      "area_km2": 0.0,
+      "relative_load_index": 0.0,
+      "note": "Eligible cells were fragmented below the 10 ha minimum mapping unit."
+    }
+  ],
+  "confidence": {
+    "High": 371,
+    "Moderate": 60,
+    "Lower - near tie": 4,
+    "Lower - boundary mismatch": 3,
+    "Lower - nearest proxy": 3
+  },
+  "interpretation": [
+    "RUSLE estimates gross sheet-and-rill detachment, not measured sediment yield.",
+    "Connectivity and delivery priority are relative screening products.",
+    "Final zones are prioritization units, not construction-ready footprints.",
+    "Field and engineering verification is required before intervention design."
+  ]
+}

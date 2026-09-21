@@ -1,0 +1,8 @@
+﻿asset,filename,format,feature_count,bbox_wgs84,size_bytes,sha256
+state_boundary,anambra_state_boundary.geojson,GeoJSON,1,"[6.61188, 5.6929, 7.36375, 6.77631]",159904,2890ea1ab91a4280fd3b8ddf84d54d39435aac5ff62c01b73bd3db2c4ebb0875
+lga_boundaries,anambra_lga_boundaries.geojson,GeoJSON,21,"[6.62615, 5.69628, 7.33906, 6.80198]",36968,025d40aeea561ed6fd02a4a79ed5c87632175a69d55ca7c6b0ae75ea699731cb
+intervention_zones,anambra_intervention_zones.geojson,GeoJSON,441,"[6.63099, 5.7395, 7.31476, 6.7095]",2008855,251a2db7452d893332d959423a0cb1daabef3f51dff464679ae1ba27fd0ba391
+primary_drainage,anambra_primary_drainage.geojson,GeoJSON,2774,"[6.61446, 5.6988, 7.34669, 6.77415]",1221764,6b343569e81d7c8cec8566891e1aa2deeaafcdf2153c2a61afc5c41baa5ea0c2
+dashboard_summary,anambra_dashboard_summary.json,JSON,,,1926,2b6ec76c58f7656fbcfaa0310d85966ff789280a03fc79a65ac5d72d31545b6d
+lga_summary,anambra_lga_summary.json,JSON,,,14092,9dbc2937c7079374d56b9584829eb3d15d15e726037852b43703d0a76d17e90d
+web_assets_readme,README_web_assets.md,Markdown,,,1193,e1981da14ffefff484c8b26bbfca14ca5aa0d61e4ee0888b2684b174bc9e69fb
