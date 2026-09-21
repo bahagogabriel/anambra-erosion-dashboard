@@ -27,6 +27,9 @@
       <span class="status-dot" aria-hidden="true"></span>
       441 validated zones
     </div>
+    <button id="about-open" class="about-button" type="button" aria-haspopup="dialog" aria-controls="about-dialog">
+      About &amp; methods
+    </button>
   </header>
 
   <main>
@@ -148,6 +151,71 @@
     <p>Anambra Soil Erosion, Sediment Connectivity and Intervention Prioritization</p>
     <p>Analysis: EPSG:32632 · Web display: EPSG:4326 · 30 m analysis grid</p>
   </footer>
+
+  <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title">
+    <div class="about-shell">
+      <header class="about-header">
+        <div>
+          <p class="eyebrow">Project context</p>
+          <h2 id="about-title">About this dashboard</h2>
+        </div>
+        <button id="about-close" class="dialog-close" type="button" aria-label="Close About and methods">×</button>
+      </header>
+
+      <div class="about-body">
+        <p class="about-lead">
+          This dashboard presents a statewide screening framework for soil-erosion severity, sediment connectivity and intervention prioritization across Anambra State, Nigeria. It converts the accepted 30 m analysis into explorable priority zones and LGA-level delivery summaries.
+        </p>
+
+        <div class="about-stats" aria-label="Project validation statistics">
+          <article><strong>441</strong><span>validated priority zones</span></article>
+          <article><strong>163.67 km²</strong><span>mapped intervention area</span></article>
+          <article><strong>21</strong><span>LGAs represented</span></article>
+          <article><strong>99.46%</strong><span>official LGA coverage</span></article>
+        </div>
+
+        <section class="about-section">
+          <h3>Methods in brief</h3>
+          <ol class="method-steps">
+            <li><strong>Soil-loss screening:</strong> baseline and conservation-scenario RUSLE surfaces estimate relative sheet-and-rill detachment.</li>
+            <li><strong>Connectivity:</strong> terrain and drainage relationships identify where detached material is more likely to connect to the drainage system.</li>
+            <li><strong>Delivery priority:</strong> erosion and connectivity evidence are integrated into relative sediment-delivery screening products.</li>
+            <li><strong>Intervention portfolio:</strong> contiguous priority cells are organized into sectors and three tiers using a 10 ha minimum mapping unit.</li>
+            <li><strong>LGA attribution:</strong> zones are assigned by maximum spatial overlap, with documented near-tie, boundary-mismatch and nearest-proxy rules.</li>
+          </ol>
+        </section>
+
+        <section class="about-section">
+          <h3>How to interpret the map</h3>
+          <p>
+            Tier and sector values support comparative planning; they do not represent measured sediment yield, guaranteed annual loss, construction footprints or final engineering designs. The modeled reduction is a screening scenario. Field reconnaissance, local consultation and engineering verification are required before intervention design or investment.
+          </p>
+        </section>
+
+        <section class="about-section about-grid">
+          <div>
+            <h3>Boundary and attribution QA</h3>
+            <p>All 441 zones have a primary LGA and valid P-code. The portfolio includes 65 cross-LGA zones, four near-tie assignments and three nearest-LGA proxy assignments retained with lower confidence.</p>
+          </div>
+          <div>
+            <h3>Data and tools</h3>
+            <p>RUSLE factors, terrain connectivity, primary drainage, intervention zones and administrative boundaries were processed in ArcGIS Pro 3.5 with ArcPy/Python. The web presentation uses MapLibre GL JS and OpenFreeMap.</p>
+          </div>
+        </section>
+
+        <section class="about-section author-block">
+          <p class="eyebrow">Author</p>
+          <h3>Gabriel Bahago Samuel</h3>
+          <p>GIS Analyst · MECON Services Ltd., Jos, Nigeria</p>
+        </section>
+      </div>
+
+      <footer class="about-footer">
+        <span>Decision-support evidence · field verification required</span>
+        <button id="about-return" class="about-return" type="button">Return to map</button>
+      </footer>
+    </div>
+  </dialog>
 
   <noscript>This dashboard requires JavaScript to load the interactive map and project summaries.</noscript>
   <script type="module" src="app.js"></script>

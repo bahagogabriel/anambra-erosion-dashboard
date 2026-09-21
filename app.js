@@ -42,7 +42,11 @@ const els = {
   interpretation: document.querySelector('#interpretation-list'),
   loading: document.querySelector('#map-loading'),
   error: document.querySelector('#map-error'),
-  coordinates: document.querySelector('#coordinate-readout')
+  coordinates: document.querySelector('#coordinate-readout'),
+  aboutOpen: document.querySelector('#about-open'),
+  aboutDialog: document.querySelector('#about-dialog'),
+  aboutClose: document.querySelector('#about-close'),
+  aboutReturn: document.querySelector('#about-return')
 };
 
 const fmt0 = new Intl.NumberFormat('en-NG', { maximumFractionDigits: 0 });
@@ -335,6 +339,22 @@ function wireControls() {
       const groups = { zones: ZONE_LAYER_IDS, lga: LGA_LAYER_IDS, drainage: DRAINAGE_LAYER_IDS };
       setVisibility(groups[input.dataset.layerGroup], input.checked);
     });
+  });
+
+  const openAbout = () => {
+    if (typeof els.aboutDialog.showModal === 'function') els.aboutDialog.showModal();
+    else els.aboutDialog.setAttribute('open', '');
+  };
+  const closeAbout = () => {
+    if (typeof els.aboutDialog.close === 'function') els.aboutDialog.close();
+    else els.aboutDialog.removeAttribute('open');
+  };
+
+  els.aboutOpen.addEventListener('click', openAbout);
+  els.aboutClose.addEventListener('click', closeAbout);
+  els.aboutReturn.addEventListener('click', closeAbout);
+  els.aboutDialog.addEventListener('click', event => {
+    if (event.target === els.aboutDialog) closeAbout();
   });
 }
 
