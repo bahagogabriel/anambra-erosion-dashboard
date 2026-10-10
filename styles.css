@@ -393,3 +393,46 @@ footer p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* Plain-language Anambra evidence story and map guidance. Original palette preserved. */
+.story-intro{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.35fr);gap:clamp(16px,3vw,36px);align-items:center;margin-bottom:14px;padding:22px 24px;background:#ffffff;border:1px solid var(--line);border-radius:15px;box-shadow:0 5px 19px rgba(11,31,42,.045)}
+.story-lead .eyebrow{color:#087b6b;opacity:1;margin-bottom:9px}
+.story-lead h2{font-size:clamp(1.5rem,2.2vw,2.25rem);line-height:1.12;letter-spacing:-.045em;margin-bottom:10px;max-width:620px}
+.story-lead>p:not(.eyebrow){color:#475e65;font-size:.85rem;line-height:1.6;margin:0}
+.story-jump{display:inline-flex;gap:8px;align-items:center;margin-top:12px;color:#087a69;text-decoration:none;font-size:.8rem;font-weight:800}
+.story-jump:hover{text-decoration:underline}
+.story-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.story-cards article{padding:12px 14px;background:#f4f8f6;border:1px solid #dceae3;border-radius:9px;min-width:0}
+.story-cards article span{display:block;font-size:.65rem;font-weight:800;line-height:1.4;letter-spacing:.045em;color:#087d6e}
+.story-cards article p{font-size:.74rem;line-height:1.57;color:#445d65;margin:5px 0 0}
+.story-cards article strong{color:var(--deep)}
+#explore-priorities{scroll-margin-top:12px}
+.map-howto{color:#4a6268;font-size:.76rem;line-height:1.6;margin:-7px 0 15px}
+.tier-key{display:grid;grid-template-columns:1fr;gap:9px}
+.tier-key span{display:flex;align-items:flex-start;gap:9px;line-height:1.5;font-weight:700;font-size:.74rem}
+.tier-key .swatch{width:15px;height:15px;min-width:15px;border:1px solid #fff;box-shadow:0 0 0 1px #b4bebb;margin-top:1px}
+.tier-key .legend-explain{font-size:.71rem;line-height:1.6;color:var(--muted);margin:3px 0 0;padding:10px;background:#f2f6f3;border-radius:8px}
+.tier-key .legend-explain strong{color:var(--ink)}
+.metric-card.accent-card{background:#e7f4ee;color:#123d36;border-color:#c5e0d4}
+.metric-card.accent-card .metric-label,.metric-card.accent-card small{color:#365e55}
+.metric-card.accent-card small{line-height:1.45}
+.zone-popup{min-width:240px;max-width:310px}
+.zone-popup header{display:flex;flex-direction:column;gap:3px}
+.zone-popup header strong{font-size:.98rem}
+.zone-plain{padding:11px 13px 10px}
+.zone-tier{display:inline-block;margin:0 0 6px;padding:5px 8px;border-radius:6px;font-size:.77rem;font-weight:800;background:#f2f3f0;color:#273b41}
+.zone-tier.tier-1{border-left:4px solid var(--red)}
+.zone-tier.tier-2{border-left:4px solid var(--orange)}
+.zone-tier.tier-3{border-left:4px solid #2a9d7f}
+.zone-purpose,.zone-next{font-size:.72rem;line-height:1.55;color:#485f65;margin:4px 0 10px}
+.zone-purpose strong{color:#274551}
+.zone-next{margin:9px 0 0;padding:8px 9px;border-radius:6px;background:#eff7f2}
+.zone-popup .zone-plain dl{padding:0;margin:0;grid-template-columns:1fr auto;gap:6px 10px;font-size:.72rem}
+.zone-popup .zone-plain dd{max-width:145px;overflow-wrap:anywhere}
+.zone-technical{padding:10px 13px;border-top:1px solid #dce7e2}
+.zone-technical summary{cursor:pointer;color:#08796d;font-weight:750;font-size:.72rem;line-height:1.5}
+.zone-technical dl{grid-template-columns:1fr auto;padding:10px 0 0;margin:0}
+.zone-technical dd{max-width:150px;overflow-wrap:anywhere}
+@media(max-width:1120px){.story-intro{grid-template-columns:1fr;gap:17px}.story-lead h2{font-size:1.85rem}.story-cards article{padding:12px}}
+@media(max-width:760px){.story-intro{padding:18px 16px;margin-bottom:12px}.story-lead h2{font-size:1.62rem}.story-lead>p:not(.eyebrow){font-size:.83rem}.story-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.story-cards{grid-template-columns:1fr}.story-cards article{padding:10px 12px}.zone-popup{min-width:0;max-width:275px}}
