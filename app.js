@@ -17,6 +17,15 @@ const sectorNames = {
   1: 'Hillslope land management',
   2: 'Urban erosion & drainage screening'
 };
+const priorityNames = {
+  1: 'Tier 1 — investigate first',
+  2: 'Tier 2 — next group',
+  3: 'Tier 3 — additional areas'
+};
+const sectorDescriptions = {
+  1: 'Inspect hillslope conditions and assess whether land-management measures could help.',
+  2: 'Inspect runoff and drainage conditions before considering improvements.'
+};
 
 const state = {
   map: null,
@@ -121,7 +130,7 @@ function renderRanking() {
     return `
       <button class="rank-row${active}" type="button" role="listitem"
         data-lga="${escapeHtml(row.lga_name)}" style="--bar:${width.toFixed(2)}%"
-        title="${escapeHtml(row.lga_name)}: ${fmt0.format(row.primary_delivery_load_index)} relative load index; ${row.primary_zone_count} zones">
+        title="${escapeHtml(row.lga_name)}: ${fmt0.format(row.primary_delivery_load_index)} relative modelled index (not measured tonnes); ${row.primary_zone_count} planning zones">
         <span class="rank-number">${index + 1}</span>
         <span class="rank-name">${escapeHtml(row.lga_name)}</span>
         <span class="rank-value">${fmt0.format(row.primary_delivery_load_index)}</span>
@@ -211,18 +220,36 @@ function setVisibility(layerIds, visible) {
 
 function popupMarkup(properties) {
   const p = properties;
+  const tier = Number(p.Tier);
+  const sector = Number(p.Sector);
+  const priorityName = priorityNames[tier] || `Tier ${escapeHtml(p.Tier)}`;
+  const actionName = sectorNames[sector] || String(p.Sector);
+  const actionMeaning = sectorDescriptions[sector] || 'This area needs local investigation before interventions can be designed.';
   return `
     <article class="zone-popup">
-      <header><small>Intervention zone</small><br><strong>Zone ${escapeHtml(p.Zone_ID)}</strong></header>
-      <dl>
-        <dt>Priority</dt><dd>Tier ${escapeHtml(p.Tier)}</dd>
-        <dt>Sector</dt><dd>${escapeHtml(sectorNames[p.Sector] ?? p.Sector)}</dd>
-        <dt>Area</dt><dd>${fmt2.format(Number(p.Area_ha))} ha</dd>
-        <dt>Primary LGA</dt><dd>${escapeHtml(p.lga_name)}</dd>
-        <dt>P-code</dt><dd>${escapeHtml(p.lga_pcode)}</dd>
-        <dt>LGA confidence</dt><dd>${escapeHtml(p.lga_conf)}</dd>
-        <dt>Attribution</dt><dd>${escapeHtml(String(p.lga_method).replaceAll('_', ' ').toLowerCase())}</dd>
-      </dl>
+      <header>
+        <small>MAPPED PLANNING AREA · ${escapeHtml(p.lga_name)}</small>
+        <strong>Zone ${escapeHtml(p.Zone_ID)}</strong>
+      </header>
+      <div class="zone-plain">
+        <p class="zone-tier tier-${tier}">${escapeHtml(priorityName)}</p>
+        <p class="zone-purpose">This colour shows relative priority for further investigation, <strong>not confirmed erosion damage</strong>.</p>
+        <dl>
+          <dt>Type of possible action</dt><dd>${escapeHtml(actionName)}</dd>
+          <dt>Area mapped</dt><dd>${fmt2.format(Number(p.Area_ha))} hectares</dd>
+          <dt>Local government area</dt><dd>${escapeHtml(p.lga_name)}</dd>
+        </dl>
+        <p class="zone-next">${escapeHtml(actionMeaning)}</p>
+      </div>
+      <details class="zone-technical">
+        <summary>Scientific identifiers and mapping confidence</summary>
+        <dl>
+          <dt>Zone ID</dt><dd>${escapeHtml(p.Zone_ID)}</dd>
+          <dt>LGA code</dt><dd>${escapeHtml(p.lga_pcode)}</dd>
+          <dt>Location assignment confidence</dt><dd>${escapeHtml(p.lga_conf)}</dd>
+          <dt>Location assignment method</dt><dd>${escapeHtml(String(p.lga_method).replaceAll('_', ' ').toLowerCase())}</dd>
+        </dl>
+      </details>
     </article>`;
 }
 
