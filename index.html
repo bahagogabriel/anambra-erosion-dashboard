@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactive screening dashboard for the Anambra soil erosion, sediment connectivity, and intervention prioritization project.">
+  <meta name="description" content="Where should erosion-control investigations begin in Anambra State? Explore 441 mapped planning zones, understand their relative priorities, and see what needs field verification.">
   <meta name="theme-color" content="#0b1f2a">
   <title>Anambra Erosion Prioritization Dashboard</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://tiles.openfreemap.org">
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.10.0/dist/maplibre-gl.css">
-  <link rel="stylesheet" href="styles.css?v=14b-about-1">
+  <link rel="stylesheet" href="styles.css?v=20261010-story1">
 </head>
 <body>
   <a class="skip-link" href="#map">Skip to map</a>
@@ -20,7 +20,7 @@
       <svg viewBox="0 0 42 42" role="img"><path d="M8 31c7-15 13-20 26-22-3 13-10 22-24 25"/><path d="M12 30c7-6 12-10 20-16"/></svg>
     </div>
     <div class="title-block">
-      <p class="eyebrow">Decision-support portfolio · Anambra State, Nigeria</p>
+      <p class="eyebrow">ENVIRONMENTAL PLANNING EVIDENCE · ANAMBRA STATE, NIGERIA</p>
       <h1>Anambra Erosion Prioritization Dashboard</h1>
     </div>
     <div class="header-status" title="Validated Stage 14A assets">
@@ -33,74 +33,90 @@
   </header>
 
   <main>
+    <section class="story-intro" aria-labelledby="study-question">
+      <div class="story-lead">
+        <p class="eyebrow">THE RESEARCH QUESTION</p>
+        <h2 id="study-question">Where should efforts to control soil erosion begin in Anambra?</h2>
+        <p>Soil erosion removes valuable soil and can carry loosened material into waterways. We studied where erosion and drainage conditions suggest that checking or planning conservation measures may be most useful.</p>
+        <a class="story-jump" href="#explore-priorities">Explore the priority map <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="story-cards" aria-label="Understand the study">
+        <article><span>01 · WHAT WE DID</span><p>Combined terrain, land cover, rainfall and drainage evidence to screen for erosion-related concerns.</p></article>
+        <article><span>02 · WHY WE DID IT</span><p>Help planners compare locations and decide where to investigate possible erosion-control measures first.</p></article>
+        <article><span>03 · WHAT WE FOUND</span><p><strong>441 planning zones covering about 163.67 km²</strong> across Anambra, grouped into three relative priority levels.</p></article>
+        <article><span>04 · WHAT IT MEANS</span><p>These are <strong>places to investigate</strong>, not confirmed erosion damage, approved construction sites or guaranteed benefits.</p></article>
+      </div>
+    </section>
     <section class="metric-strip" aria-label="Project headline metrics">
       <article class="metric-card">
-        <span class="metric-label">Priority zones</span>
+        <span class="metric-label">Mapped planning zones</span>
         <strong id="metric-zones">441</strong>
         <small id="metric-zones-note">current map selection</small>
       </article>
       <article class="metric-card">
-        <span class="metric-label">Selected zone area</span>
+        <span class="metric-label">Area in selected zones</span>
         <strong id="metric-area">163.67 km²</strong>
-        <small>mapped intervention units</small>
+        <small>for further investigation</small>
       </article>
       <article class="metric-card">
-        <span class="metric-label">LGAs represented</span>
+        <span class="metric-label">Local government areas</span>
         <strong id="metric-lgas">21</strong>
-        <small>primary attribution</small>
+        <small>represented in current selection</small>
       </article>
       <article class="metric-card accent-card">
-        <span class="metric-label">Modeled reduction</span>
+        <span class="metric-label">Illustrative conservation scenario</span>
         <strong id="metric-reduction">716,299 t/yr</strong>
-        <small>screening scenario · 3.396%</small>
+        <small>statewide modelled reduction · 3.396%; not a guaranteed result</small>
       </article>
     </section>
 
-    <section class="dashboard-grid">
+    <section id="explore-priorities" class="dashboard-grid">
       <aside class="control-panel" aria-label="Map controls and filters">
         <div class="panel-heading">
           <div>
             <p class="eyebrow">Explore</p>
-            <h2>Filter priority zones</h2>
+            <h2>Explore priority areas</h2>
           </div>
-          <button id="reset-filters" class="text-button" type="button">Reset</button>
+          <button id="reset-filters" class="text-button" type="button">Clear filters</button>
         </div>
 
-        <label for="sector-filter">Intervention sector</label>
+        <p class="map-howto">Choose a category, then click any coloured area on the map to understand why that location was selected.</p>
+        <label for="sector-filter">Type of possible action</label>
         <select id="sector-filter">
           <option value="all">All sectors</option>
           <option value="1">Hillslope land management</option>
           <option value="2">Urban erosion &amp; drainage screening</option>
         </select>
 
-        <label for="tier-filter">Priority tier</label>
+        <label for="tier-filter">Relative priority</label>
         <select id="tier-filter">
           <option value="all">All tiers</option>
-          <option value="1">Tier 1</option>
-          <option value="2">Tier 2</option>
-          <option value="3">Tier 3</option>
+          <option value="1">Tier 1 — investigate first</option>
+          <option value="2">Tier 2 — next group</option>
+          <option value="3">Tier 3 — additional areas</option>
         </select>
 
-        <label for="lga-filter">Primary LGA</label>
+        <label for="lga-filter">Local government area (LGA)</label>
         <select id="lga-filter">
           <option value="all">All 21 LGAs</option>
         </select>
 
         <fieldset class="layer-controls">
-          <legend>Map layers</legend>
+          <legend>Optional map information</legend>
           <label><input type="checkbox" data-layer-group="zones" checked> Intervention zones</label>
           <label><input type="checkbox" data-layer-group="drainage" checked> Primary drainage</label>
           <label><input type="checkbox" data-layer-group="lga" checked> LGA boundaries &amp; labels</label>
         </fieldset>
 
         <div class="tier-key" aria-label="Priority tier legend">
-          <p class="legend-title">Priority tier</p>
-          <span><i class="swatch tier-1"></i>Tier 1</span>
-          <span><i class="swatch tier-2"></i>Tier 2</span>
-          <span><i class="swatch tier-3"></i>Tier 3</span>
+          <p class="legend-title">What the map colours mean</p>
+          <span><i class="swatch tier-1" aria-hidden="true"></i>Tier 1 — investigate first</span>
+          <span><i class="swatch tier-2" aria-hidden="true"></i>Tier 2 — next group</span>
+          <span><i class="swatch tier-3" aria-hidden="true"></i>Tier 3 — additional areas</span>
+          <p class="legend-explain">These colours compare <strong>relative planning priority</strong>, not measured erosion damage. Blue lines show major drainage paths; dashed borders mark LGAs.</p>
         </div>
 
-        <button id="zoom-home" class="primary-button" type="button">Zoom to Anambra</button>
+        <button id="zoom-home" class="primary-button" type="button">Return to Anambra view</button>
       </aside>
 
       <section class="map-panel" aria-label="Interactive intervention map">
@@ -122,17 +138,17 @@
         <section>
           <div class="panel-heading compact">
             <div>
-              <p class="eyebrow">Portfolio</p>
-              <h2>LGA delivery-load ranking</h2>
+              <p class="eyebrow">Statewide comparison</p>
+              <h2>Compare local government areas</h2>
             </div>
           </div>
-          <p class="panel-note">Statewide relative index. Select a row to filter the map.</p>
-          <div class="ranking-header"><span>LGA</span><span>Relative load</span></div>
+          <p class="panel-note">Areas are ranked using a relative modelled sediment-delivery index—not measured tonnes of soil. Select an LGA to see its mapped zones.</p>
+          <div class="ranking-header"><span>LGA</span><span>Relative index</span></div>
           <div id="lga-ranking" class="ranking-list" role="list"></div>
         </section>
 
         <section class="sector-section">
-          <h2>Sector composition</h2>
+          <h2>Types of proposed investigations</h2>
           <div id="sector-summary"></div>
         </section>
       </aside>
@@ -141,7 +157,7 @@
     <section class="interpretation-band" aria-labelledby="interpretation-title">
       <div>
         <p class="eyebrow">Use with care</p>
-        <h2 id="interpretation-title">Screening evidence, not engineering design</h2>
+        <h2 id="interpretation-title">What this map cannot confirm</h2>
       </div>
       <ul id="interpretation-list"></ul>
     </section>
@@ -164,7 +180,7 @@
 
       <div class="about-body">
         <p class="about-lead">
-          This dashboard presents a statewide screening framework for soil-erosion severity, sediment connectivity and intervention prioritization across Anambra State, Nigeria. It converts the accepted 30 m analysis into explorable priority zones and LGA-level delivery summaries.
+          Soil erosion can remove productive land and carry loose material toward streams and drainage networks. This study used mapped environmental conditions to identify and compare 441 areas that deserve closer attention across Anambra State. It is a first step for planning where to investigate possible solutions—not a survey of proven damage or a final engineering plan.
         </p>
 
         <div class="about-stats" aria-label="Project validation statistics">
@@ -186,9 +202,9 @@
         </section>
 
         <section class="about-section">
-          <h3>How to interpret the map</h3>
+          <h3>How to read the map and priorities</h3>
           <p>
-            Tier and sector values support comparative planning; they do not represent measured sediment yield, guaranteed annual loss, construction footprints or final engineering designs. The modeled reduction is a screening scenario. Field reconnaissance, local consultation and engineering verification are required before intervention design or investment.
+            Red, orange and teal areas show the three relative screening-priority tiers; Tier 1 is the first group for further investigation, followed by Tiers 2 and 3. The blue lines represent mapped drainage pathways and dashed lines show LGA boundaries. Tier and sector values support comparisons, not measured sediment yield, guaranteed annual soil loss, documented gully damage or construction-ready footprints. The modelled conservation reduction is only an illustrative scenario; field visits, community consultation and engineering verification must precede any intervention.
           </p>
         </section>
 
@@ -218,6 +234,6 @@
   </dialog>
 
   <noscript>This dashboard requires JavaScript to load the interactive map and project summaries.</noscript>
-  <script type="module" src="app.js?v=14b-about-1"></script>
+  <script type="module" src="app.js?v=20261010-story1"></script>
 </body>
 </html>
